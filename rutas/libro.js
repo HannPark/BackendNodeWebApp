@@ -1,6 +1,7 @@
 //Metodos EXPRESS
 const express = require("express");
 const ruta = express.Router();
+const { seguridad } = require("../middleware/seguridad");
 
 const {
   getLibros,
@@ -8,19 +9,17 @@ const {
   crearLibro,
   updateLibro,
   deleteLibro,
-  pagination
+  pagination,
 } = require("../controllers/libro");
 
-ruta.route('/')
-    .get(getLibros)
-    .post(crearLibro)
+ruta.route("/").get(seguridad, getLibros).post(crearLibro);
 
-ruta.route('/:id')
-    .get(getLibroById)
-    .put(updateLibro)
-    .delete(deleteLibro)
+ruta
+  .route("/:id")
+  .get(seguridad, getLibroById)
+  .put(seguridad, updateLibro)
+  .delete(seguridad, deleteLibro);
 
-ruta.route("/pagination")
-    .post(pagination)
+ruta.route("/pagination").post(seguridad, pagination);
 
 module.exports = ruta;

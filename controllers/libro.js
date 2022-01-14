@@ -85,7 +85,7 @@ exports.pagination = async (req, res, next) => {
     let libros = [];
 
     let totalRows = 0; //Cantidad de records
-    
+
     // filterValue = {valor: "", propiedad: ""}
     if (req.body.filterValue) {
       filterValor = req.body.filterValue.valor;
@@ -113,18 +113,18 @@ exports.pagination = async (req, res, next) => {
     const pagesQuantity = Math.ceil(totalRows / pageSize);
 
     res.status(200).json({
-        status: 200,
-        pageSize,
-        page,
-        sort,
-        sortDirection,
-        pagesQuantity,
-        totalRows,
-        data: libros
+      status: 200,
+      pageSize,
+      page,
+      sort,
+      sortDirection,
+      pagesQuantity,
+      totalRows,
+      data: libros,
     });
   } catch (err) {
     next(
-        new ErrorResponse("No se pudo procesar el request " + err.message, 400)
-      );
+      new ErrorResponse("No se pudo procesar el request " + err.message, 400)
+    );
   }
 };

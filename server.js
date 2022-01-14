@@ -12,6 +12,7 @@ connectDatabase();
 //Instancias de Rutas
 const libro = require("./rutas/libro");
 const autor = require("./rutas/autor");
+const usuario = require("./rutas/usuario")
 
 //Instancia de Express
 const app = express();
@@ -26,6 +27,7 @@ if (process.env.NODE_ENV === "development") {
 //Rutas de Backend
 app.use("/api/libreriaAutor", autor);
 app.use("/api/libro", libro);
+app.use("/usuario", usuario);
 
 app.use(errorHandler);
 
